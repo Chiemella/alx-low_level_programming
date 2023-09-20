@@ -2,7 +2,8 @@
 
 /**
  * reset_to_98 - takes a pointer to a parameter and updates its value.
- * @n: input integer.
+ * and unpdates the value it points to 98
+ * @n: input
  * Return: no return.
  */
 void reset_to_98(int *n)
