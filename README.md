@@ -1,1 +1,4 @@
-0x00. C - Hello, World
+# alx-low_level_programming
+
+This repository contains C projects and other low level programming exercices.
+
