@@ -1,33 +1,49 @@
-#include <stdlib.h>
 #include "main.h"
+#include <stdlib.h>
 
 /**
- * *_strdup - copies the string given as parameter
- * @str: string to duplicate
+ * string_nconcat - concatenates two strings.
+ * @s1: first string.
+ * @s2: second string.
+ * @n: amount of bytes.
  *
- * Return: pointer to the copied string (Success), NULL (Error)
+ * Return: pointer to the allocated memory.
+ * if malloc fails, status value is equal to 98.
  */
-char *_strdup(char *str)
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *dup;
-	unsigned int i, len;
+	char *sout;
+	unsigned int ls1, ls2, lsout, i;
 
-	i = 0;
-	len = 0;
+	if (s1 == NULL)
+		s1 = "";
 
-	if (str == NULL)
+	if (s2 == NULL)
+		s2 = "";
+
+	for (ls1 = 0; s1[ls1] != '\0'; ls1++)
+		;
+
+	for (ls2 = 0; s2[ls2] != '\0'; ls2++)
+		;
+
+	if (n > ls2)
+		n = ls2;
+
+	lsout = ls1 + n;
+
+	sout = malloc(lsout + 1);
+
+	if (sout == NULL)
 		return (NULL);
 
-	while (str[len])
-		len++;
+	for (i = 0; i < lsout; i++)
+		if (i < ls1)
+			sout[i] = s1[i];
+		else
+			sout[i] = s2[i - ls1];
 
-	dup = malloc(sizeof(char) * (len + 1));
+	sout[i] = '\0';
 
-	if (dup == NULL)
-		return (NULL);
-
-	while ((dup[i] = str[i]) != '\0')
-		i++;
-
-	return (dup);
+	return (sout);
 }
